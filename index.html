@@ -316,3 +316,44 @@
 
                 <a href="tel:+919486452966" class="contact-item">
                     <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45
+                    <div class="contact-details">
+                        <span>Phone</span>
+                        <strong>+123 456 7890</strong>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="fullImage" src="" alt="Full view">
+    </div>
+
+    <script>
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('fullImage');
+
+        // Add click listener to all gallery items
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevents instant triggering of window click
+                modal.style.display = 'flex';
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+            });
+        });
+
+        // Close modal when clicking the close button or outside the image
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close modal on 'Escape' key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+
+</body>
+</html>
