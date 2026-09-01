@@ -96,6 +96,13 @@
             overflow: hidden;
             background: #0f172a;
             border: 1px solid #334155;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
         }
 
         .gallery-item img {
@@ -126,6 +133,45 @@
             font-size: 0.85rem;
             border: 1px solid rgba(56, 189, 248, 0.2);
         }
+
+        /* Image Preview Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 95%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -139,25 +185,20 @@
         <section class="card">
             <h2 class="section-title">Video Walkthrough Of Vazhikatti</h2>
             <div class="video-container">
-    <video controls style="width: 100%; height: auto; border-radius: 8px;">
-        <source src="./src/Vazhikatti.Saas.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
+                <video controls style="width: 100%; height: auto; border-radius: 8px;">
+                    <source src="./src/Vazhikatti.Saas.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </section>
 
         <section class="card">
             <h2 class="section-title">Overview</h2>
-            <p>Vazhikatti is a web-based, indoor navigation SaaS platform designed for healthcare facilities to
-reduce visitor direction confusion and lower the time for navigation by guiding the patients to
-their exact location. By leveraging QR code scanning and dynamic web based navigation, the
-platform guides patients and visitors directly to hospital departments, rooms, and facilities as per
-their desired location. The system reduces information desk crowding, cuts down staff
-interruptions, and equips hospital administrators with real-time operational traffic analytics..</p>
+            <p>Vazhikatti is a web-based, indoor navigation SaaS platform designed for healthcare facilities to reduce visitor direction confusion and lower the time for navigation by guiding the patients to their exact location. By leveraging QR code scanning and dynamic web based navigation, the platform guides patients and visitors directly to hospital departments, rooms, and facilities as per their desired location. The system reduces information desk crowding, cuts down staff interruptions, and equips hospital administrators with real-time operational traffic analytics..</p>
             
             <div class="tech-tags">
                 <span class="tag">No Native Mobile Apps Needed</span>
-                <span class="tag">Lauguage Compatability</span>
+                <span class="tag">Language Compatibility</span>
             </div>
         </section>
 
@@ -166,33 +207,64 @@ interruptions, and equips hospital administrators with real-time operational tra
             <div class="gallery-grid">
                 
                 <div class="gallery-item">
-                    <img src="/src/Architecture_Diagram.png" alt="Screenshot 1">
+                    <img src="/src/Architecture_Diagram.png" alt="Architecture Diagram">
                     <div class="caption">Architecture</div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="./src/HOME.jpg" alt="Screenshot 2">
+                    <img src="./src/HOME.jpg" alt="Home Page">
                     <div class="caption">Home Page</div>
                 </div>
-<div class="gallery-item">
-                    <img src="./src/MAPE.jpg" alt="Screenshot 2">
+
+                <div class="gallery-item">
+                    <img src="./src/MAPE.jpg" alt="Map Editor Poi Creator">
                     <div class="caption">Map Editor Poi Creator</div>
                 </div>
 
-               <div class="gallery-item">
-                    <img src="./src/QRG.jpg" alt="Screenshot 3">
+                <div class="gallery-item">
+                    <img src="./src/QRG.jpg" alt="Qr Generator">
                     <div class="caption">Qr Generator</div>
                 </div>
 
-
                 <div class="gallery-item">
-                    <img src="./src/NAV.jpg" alt="Screenshot 3">
+                    <img src="./src/NAV.jpg" alt="Navigation Page">
                     <div class="caption">Navigation Page</div>
                 </div>
 
             </div>
         </section>
     </div>
+
+    <!-- Modal for full image view -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="fullImage" src="" alt="Full view">
+    </div>
+
+    <script>
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('fullImage');
+
+        // Add click listener to all gallery items
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevents instant triggering of window click
+                modal.style.display = 'flex';
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+            });
+        });
+
+        // Close modal when clicking the close button or outside the image
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close modal on 'Escape' key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
 
 </body>
 </html>
