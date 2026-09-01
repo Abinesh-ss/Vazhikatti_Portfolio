@@ -98,6 +98,9 @@
             border: 1px solid #334155;
             cursor: pointer;
             transition: transform 0.2s ease, border-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .gallery-item:hover {
@@ -107,8 +110,9 @@
 
         .gallery-item img {
             width: 100%;
-            height: auto;
+            height: 220px;
             object-fit: contain;
+            background: #0b1120;
             display: block;
         }
 
@@ -116,6 +120,7 @@
             padding: 0.75rem;
             font-size: 0.9rem;
             color: var(--text-muted);
+            margin-top: auto;
         }
 
         .tech-tags {
@@ -235,7 +240,6 @@
         </section>
     </div>
 
-    <!-- Modal for full image view -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img class="modal-content" id="fullImage" src="" alt="Full view">
