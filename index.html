@@ -45,6 +45,35 @@
         header p {
             color: var(--text-muted);
             font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Resume Action Button */
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent);
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-download:hover {
+            background-color: #7dd3fc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(56, 189, 248, 0.35);
+        }
+
+        .btn-download svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
         }
 
         .card {
@@ -232,6 +261,11 @@
         <header>
             <h1>Vazhikatti</h1>
             <p>A Web SaaS Which Reduce The Situation Of Patients And Visitors Relying On Manual Direction Inquires At Hospital Desks Which Results In Reduced Navigation Time.</p>
+            
+            <a href="./src/Abinesh_Sermakani.pdf" download="Abinesh_Resume.pdf" class="btn-download">
+                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                Download Resume
+            </a>
         </header>
 
         <section class="card">
@@ -337,7 +371,7 @@
         // Add click listener to all gallery items
         document.querySelectorAll('.gallery-item img').forEach(img => {
             img.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevents instant triggering of window click
+                e.stopPropagation();
                 modal.style.display = 'flex';
                 modalImg.src = img.src;
                 modalImg.alt = img.alt;
